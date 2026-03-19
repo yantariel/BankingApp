@@ -10,6 +10,8 @@ namespace BankingApp.Classes
     public class Account
     {
         public ObservableCollection<Card> Cards { get; set; }
+        
+
         // создать класс Card
         // public ObservableCollection<Card> Cards { get; set; }
 
