@@ -37,7 +37,7 @@ namespace BankingApp.Classes
             CardHolderName = "Яна Гудкова";
         }
 
-        public void AddCard(Card card) //добавляем карту в коллекцию
+        public void AddCard(Card card) //добавляем карту в коллекцию )
         {
             Cards.Add( card );
         }
