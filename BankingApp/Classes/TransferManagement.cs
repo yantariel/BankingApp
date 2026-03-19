@@ -36,14 +36,7 @@ namespace BankingApp.Classes
 
                 if (long.TryParse(numberWithoutPlus, out long phoneNumber)) 
                 {
-                    if (numberWithoutPlus.Length == 11)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    return numberWithoutPlus.Length == 11;
                 }
                 else
                 {
