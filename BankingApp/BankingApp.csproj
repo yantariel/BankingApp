@@ -94,16 +94,20 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Account.cs" />
+    <Compile Include="Classes\Account_CheckingAccount.cs" />
     <Compile Include="Classes\Account_CreditAccount.cs" />
     <Compile Include="Classes\Account_SavingAccount.cs" />
     <Compile Include="Classes\Authentification.cs" />
     <Compile Include="Classes\Card.cs" />
     <Compile Include="Classes\CardNumberGenerator.cs" />
     <Compile Include="Classes\FileData.cs" />
+    <Compile Include="Classes\IAccount.cs" />
+    <Compile Include="Classes\IWithCards.cs" />
     <Compile Include="Classes\Static.cs" />
     <Compile Include="Classes\Transaction.cs" />
     <Compile Include="Classes\TransactionHistory.cs" />
     <Compile Include="Classes\TransferManagement.cs" />
+    <Compile Include="Classes\User.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

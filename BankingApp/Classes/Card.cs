@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static BankingApp.Classes.CardNumberGenerator;
 
 namespace BankingApp.Classes
 {
     public class Card
     {
-        public string CardNumber { get; set; }     //номер карты
-        public string ExpiryDate { get; set; }     //срок действия (MM/YY)
-        public string PaymentSystem { get; set; }  //платежная система (VISA, Mastercard)
+        public string CardNumber { get; private set; }     //номер карты
+        public string ExpiryDate { get; private set; }     //срок действия (MM/YY)
+        public PaymentSystem PaymentSystem { get; private set; }  //платежная система (VISA, Mastercard) (enum)
         public float CardBalance { get; set; }     //баланс
-        public DateTime ReleaseDate { get; set; }  //дата выпуска
-        public string CVV { get; set; }            //cvv код
+        public DateTime ReleaseDate { get; private set; }  //дата выпуска
+        public string CVV { get; private set; }            //cvv код
         public Account Account { get; set; }
 
-        public Card(string cardNumber, string expiryDate, string paymentSystem, float balance)
+        public Card(string cardNumber, string expiryDate, PaymentSystem paymentSystem, float balance)
         {
             CardNumber = cardNumber;
             ExpiryDate = expiryDate;
             PaymentSystem = paymentSystem;
             CardBalance = balance;
             ReleaseDate = DateTime.Now;  //время компьютера
-            CVV = "***";                 //cvv по умолчанию скрыто звездочками
+            CVV = GenerateRandomCVV();             
         }
-
 
         public string GetMaskedCardNumber() //чтобы показывались только последние 4 циферки
         {
@@ -36,6 +36,11 @@ namespace BankingApp.Classes
             return $"**** **** **** {last4}";
         }
 
+        private static string GenerateRandomCVV()
+        {
+            Random random = new Random();
+            return random.Next(100, 1000).ToString();
+        }
 
         public bool IsExpired() //проверка срока действия карты
         {

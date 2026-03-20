@@ -33,12 +33,16 @@
             <Label Content="Здравствуйте!" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
             <Label Content="Введите пин-код:" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
 
-            <TextBox Grid.Row="2" Background="Beige"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"  VerticalAlignment="Center"  Name="TB_pincode"/>
-            <!--+ конвертер-->
-            <!--<Label Content="..." Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center" />-->
-            
-            <Button Content="  Ввести  "  Grid.Row="3" Background="LightCoral" Click="ButtonClick_CheckPincode" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Margin="10"/>
+            <Grid Grid.Row="2">
+                <TextBox x:Name="TB_pincode" Background="Beige" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"  
+                         VerticalAlignment="Center" FontSize="14" PreviewTextInput="TB_pincode_PreviewTextInput"
+                         TextChanged="TB_pincode_TextChanged" MaxLength="6"/>
 
+                <TextBlock x:Name="PlaceholderText" Text="..." HorizontalAlignment="Center" VerticalAlignment="Center"
+                           FontSize="14" Foreground="Gray" IsHitTestVisible="False" Visibility="Visible"/>
+            </Grid>
+
+            <Button Content="  Ввести  "  Grid.Row="3" Background="LightCoral" Click="ButtonClick_CheckPincode" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Margin="10"/>
         </Grid>
     </Grid>
 </Page>

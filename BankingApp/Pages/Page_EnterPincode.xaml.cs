@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -36,17 +37,11 @@ namespace BankingApp.Pages
             _authentification = new Authentification();
         }
 
-        private void ButtonClick_CheckPincode(object sender, RoutedEventArgs e)
+        private void ButtonClick_CheckPincode(object sender, RoutedEventArgs e) //проверка введенного пинкода
         {
-            // 1 количество попыток
-
-            // 2 считывание пароля
-            // считывание пароля введенного пользователем 
             string pincode = TB_pincode.Text;
 
-            // 3 проверка пароля => результат
-
-            if(_authentification.TryCheckPin(pincode, out string error))
+            if (_authentification.TryCheckPin(pincode, out string error))
             {
                 MessageBox.Show("Добро пожаловать!");
 
@@ -56,40 +51,25 @@ namespace BankingApp.Pages
             {
                 MessageBox.Show(error);
             }
+        }
+        private void TB_pincode_PreviewTextInput(object sender, TextCompositionEventArgs e) //запрещает ввод не цифр
+        {
+            Regex regex = new Regex("[^0-9]+"); //правило: все, что не является цифрой
+            e.Handled = regex.IsMatch(e.Text); //e.Text то, что пользователь только что ввел
+            //regex.IsMatch(e.Text) проверяет, подходит ли введенный текст под правило (возвращает True/False)
+            //e.Handled = false - разрешает вводить символы
+        }
 
-            //try
-            //{
-            //    _authentification.TryCheckPin(pincode);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //    return;
-            //}
-
-
-            //bool isPinValid = _authentification.CheckPin(pincode);
-
-            //if (isPinValid) //ксли pincode true
-            //{
-            //    MessageBox.Show("Добро пожаловать!");
-            //    // вызов следующего окошка (с балансом и тд)
-            //    Account account = _parentWindow.GetAccount();
-            //    _parentWindow.Refresh(new Page_Menu(_parentWindow, account));
-            //}
-            //else
-            //{
-            //    if (_authentification.IsBlocked())
-            //    {
-            //        MessageBox.Show("Неверный pin-код!");
-            //        MessageBox.Show($"Оставшееся число попыток: {_authentification.GetRemainingAttempts()}");
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Число попыток ввода пин-кода превышено");
-            //    }
-            //    // можно сделать зеленый блок красным или написать текстом некорректный пинкод
-            //}
+        private void TB_pincode_TextChanged(object sender, TextChangedEventArgs e) //управляет видимостью плейсхолдера
+        {
+            if (string.IsNullOrEmpty(TB_pincode.Text))
+            {
+                PlaceholderText.Visibility = Visibility.Visible; //показываем многоточие, если в плейсхолдере нет текста
+            }
+            else
+            {
+                PlaceholderText.Visibility = Visibility.Collapsed; //скрываем многоточие, если в плейсхолдере текст
+            }
         }
     }
 }

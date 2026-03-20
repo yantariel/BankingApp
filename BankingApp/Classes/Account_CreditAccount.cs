@@ -14,7 +14,7 @@ namespace BankingApp.Classes
 
         public Account_CreditAccount(float accountBalance, string accountOwnerName, string accountNumber, 
             AccountType accountType, DateTime openDate, float creditLimit, float interestRate)
-            : base(accountBalance, accountOwnerName, accountNumber, AccountType.Сredit)
+            : base(accountBalance, accountOwnerName, accountNumber, AccountType.Credit)
         {
             InterestRate = interestRate;
             CreditLimit = creditLimit;

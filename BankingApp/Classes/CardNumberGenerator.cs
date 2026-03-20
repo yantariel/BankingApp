@@ -6,32 +6,28 @@ using System.Threading.Tasks;
 
 namespace BankingApp.Classes
 {
-    internal class CardNumberGenerator
+    public class CardNumberGenerator
     {
-        private class PaymentSystemNumber    //числа с которых начинаются карты разных платежных систем
+        public enum PaymentSystem
         {
-            public const int Mir = 2;
-            public const int Visa = 4;
-            public const int MasterCard = 5;
-            public const int UnionPay = 6;
+            Visa,
+            MasterCard,
+            Mir
         }
 
-        private string GenerateCardNumber(PaymentSystemNumber paymentSystemNumber)
+        public string GenerateCardNumber(PaymentSystem paymentSystem)
         {
-            int firstDigit = GetFirstDigitForPaymentSystemNumber(paymentSystemNumber);
+            int firstDigit = GetFirstDigitForPaymentSystem(paymentSystem); //карты разных платежных систем начинаются с разных цифр
 
-            string binNumber;  //bin - идентификационный номер банка, который выпустил карту
-            binNumber = GenerateBin(firstDigit);
+            string binNumber = GenerateBin(firstDigit); //bin - идентификационный номер банка, который выпустил карту (6 цифр)
 
-            string accountId = GenerateAccountID(); //непосредственно номер карты
+            string accountId = GenerateAccountID(); //непосредственно номер карты (9 цифр_
 
-            string cardNumberWithoutLuhnAlgorithm = binNumber + accountId;
+            string cardNumberWithoutLuhnAlgorithm = binNumber + accountId; //получаем 15 цифр без последней
 
             int digitFromLuhnAlgorithm = LuhnAlgorithm(cardNumberWithoutLuhnAlgorithm); //последняя цифра расчитывается с помощью алгоритма Луна
 
-            return cardNumberWithoutLuhnAlgorithm + digitFromLuhnAlgorithm; //окончательный номер карты с последней цифрой с алгоритмом Луна
-
-
+            return cardNumberWithoutLuhnAlgorithm + digitFromLuhnAlgorithm.ToString(); //окончательный номер карты с последней цифрой с алгоритмом Луна
         }
 
         private string GenerateBin(int firstDigit)
@@ -51,14 +47,32 @@ namespace BankingApp.Classes
             Random random = new Random();
 
             string accountID = "";
-            for (int i = 0; i < 10; i++)  
+            for (int i = 0; i < 9; i++)  
             {
                 accountID += random.Next(0, 10); //Возвращает неотрицательное случайное целое число в диапазоне 
             }
             return accountID;
         }
 
-        private string LuhnAlgorithm(string cardNumberWithoutLuhnAlgorithm)  //проверяет точность идентификационных номеров
+        private int GetFirstDigitForPaymentSystem(PaymentSystem paymentSystem)
+        {
+            switch (paymentSystem)
+            {
+                case PaymentSystem.Visa:
+                    return 4; 
+
+                case PaymentSystem.MasterCard:
+                    return 5;  
+
+                case PaymentSystem.Mir:
+                    return 2; 
+
+                default:
+                    return 2;  //по умолчанию Mir
+            }
+        }
+
+        private int LuhnAlgorithm(string cardNumberWithoutLuhnAlgorithm)  //проверяет точность идентификационных номеров
         {
             int sum = 0;
             int length = cardNumberWithoutLuhnAlgorithm.Length;
@@ -83,8 +97,16 @@ namespace BankingApp.Classes
                 sum += digit; 
                 shouldDouble = !shouldDouble;  //переключаем флаг, так как теперь цифра - на четном месте справа налево
             }
-        }
-        }
 
+            int flag = sum % 10; 
+            //нужно, чтобы сумма всех цифр (с новой найденной) заканчивалась на 0
+            int digitFromLuhnAlgorithm = 0; //если у нас сумма уже кратна 10, 
+            if (flag != 0)
+            {
+                digitFromLuhnAlgorithm = (10 - (flag % 10)); //то есть sum % 10 ищет последнюю цифру суммы, 10 - (sum % 10) дает
+                                                             //недостающую 16 цифру банковского номера (чтобы сумма 16 цифр была кратна 10)
+            }
+            return digitFromLuhnAlgorithm;
+        }
     }
 }

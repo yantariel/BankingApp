@@ -12,7 +12,7 @@ namespace BankingApp.Classes
 
         public Account_SavingAccount(float accountBalance, string accountOwnerName, string accountNumber,
             AccountType accountType, DateTime openDate, float interestRate)
-            : base(accountBalance, accountOwnerName, accountNumber, AccountType.Сredit)
+            : base(accountBalance, accountOwnerName, accountNumber, AccountType.Credit)
         {
             InterestRate = interestRate;
         }
