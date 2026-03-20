@@ -7,8 +7,23 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
+//перевод по номеру телефона или карты
+
 namespace BankingApp.Classes
 {
+    public enum TransferType
+    {
+        Phone,
+        Card
+    }
+    public class TransferResult
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; }
+        public float NewBalance { get; set; }
+        public Transaction Transaction { get; set; }
+    }
+
     public class TransferManagement
     {
         private Account _accountManagement;
@@ -129,32 +144,18 @@ namespace BankingApp.Classes
                 transactionType = "Перевод по карте";
             }
 
-            Transaction transaction = new Transaction(transactionType, amount, recipient, _accountManagement.CardBalance);
+            Transaction transaction = new Transaction(transactionType, amount, recipient, _accountManagement.AccountBalance);
 
             _transactionHistory.AddTransaction(transaction);
 
             result.Success = true;
             result.Message = $"Успешно переведено {amount} ₽";
-            result.NewBalance = _accountManagement.CardBalance;
+            result.NewBalance = _accountManagement.AccountBalance;
             result.Transaction = transaction;
 
             return result;
         }
-    }   
-
-    public enum TransferType
-    {
-        Phone,
-        Card
-    }
-
-    public class TransferResult
-    {
-        public bool Success { get; set; }
-        public string Message { get; set; }
-        public float NewBalance { get; set; }
-        public Transaction Transaction { get; set; }
-    }
+    }  
 
 
 }

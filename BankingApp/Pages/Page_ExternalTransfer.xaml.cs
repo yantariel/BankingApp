@@ -44,7 +44,7 @@ namespace BankingApp.Pages
 
         private void UpdateBalanceDisplay()
         {
-            Text_Balance.Text = _accountManagement.CardBalance.ToString("N2") + " ₽";
+            Text_Balance.Text = _accountManagement.AccountBalance.ToString("N2") + " ₽";
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)

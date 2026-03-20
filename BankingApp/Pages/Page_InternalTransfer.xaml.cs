@@ -36,7 +36,7 @@ namespace BankingApp.Pages
 
         private void UpdateBalanceDisplay()
         {
-            Text_CardBalance.Text = _account.CardBalance.ToString("N2") + " ₽";
+            Text_CardBalance.Text = _account.AccountBalance.ToString("N2") + " ₽";
         }
 
         private void ButtonClick_CommitInternalTransfer(object sender, RoutedEventArgs e)
@@ -84,9 +84,9 @@ namespace BankingApp.Pages
 
             if (fromAccount.Contains("Карта") && toAccount.Contains("Накопительный"))
             {
-                if (_account.CardBalance >= amount)
+                if (_account.AccountBalance >= amount)
                 {
-                    float newCardBalance = _account.CardBalance - amount;
+                    float newCardBalance = _account.AccountBalance - amount;
                     float newSavingBalance = _account.SavingBalance + amount;
 
                     _account.UpdateCardBalance(newCardBalance);

@@ -8,70 +8,32 @@ namespace BankingApp.Classes
 {
     public class Card
     {
-        // Основные свойства карты
-        public string CardNumber { get; set; }        //номер карты
+        public string CardNumber { get; set; }     //номер карты
         public string ExpiryDate { get; set; }     //срок действия (MM/YY)
-        public string CardType { get; set; }        //тип карты (дебетовая, накопительный счет)
-        public string PaymentSystem { get; set; }      //платежная система (VISA, Mastercard)
-        public float Balance { get; set; }            //баланс
-        public DateTime ReleaseDate { get; set; }       //дата выпуска
-        public string CVV { get; set; }                //cvv код
-        public string Color { get; set; }             //цвет карты 
+        public string PaymentSystem { get; set; }  //платежная система (VISA, Mastercard)
+        public float CardBalance { get; set; }     //баланс
+        public DateTime ReleaseDate { get; set; }  //дата выпуска
+        public string CVV { get; set; }            //cvv код
+        public Account Account { get; set; }
 
-        public Card()  
-        {
-            CardNumber = "0000 0000 0000 0000";
-            ExpiryDate = "00/00";
-            CardType = "Дебетовая";  
-            PaymentSystem = "VISA";
-            Balance = 0f;
-            ReleaseDate = DateTime.Now;  //время компьютера
-            CVV = "***";
-            Color = "LightPink";
-        }
-
-        public Card(string cardNumber, string cardHolderName, string expiryDate,
-                    string cardType, string paymentSystem, float balance)
+        public Card(string cardNumber, string expiryDate, string paymentSystem, float balance)
         {
             CardNumber = cardNumber;
-            CardHolderName = cardHolderName;
             ExpiryDate = expiryDate;
-            CardType = cardType;
             PaymentSystem = paymentSystem;
-            Balance = balance;
-            ReleaseDate = DateTime.Now;
-            CVV = "***";
-            Color = "LightPink";
+            CardBalance = balance;
+            ReleaseDate = DateTime.Now;  //время компьютера
+            CVV = "***";                 //cvv по умолчанию скрыто звездочками
         }
 
 
-        public string GetMaskedCardNumber() //чтобы показывались только последние 4 цифорки
+        public string GetMaskedCardNumber() //чтобы показывались только последние 4 циферки
         {
             if (string.IsNullOrEmpty(CardNumber) || CardNumber.Length < 16)
                 return "**** **** **** ****";
 
             string last4 = CardNumber.Substring(12, 4);  //Substring вырезает часть строки с 12 символа, берет 4
             return $"**** **** **** {last4}";
-        }
-
-        public bool HasEnoughMoney(float amount)  //проверка достаточно ли денег на карте
-        {
-            return Balance >= amount;
-        }
-
-        public bool Withdraw(float amount) //снятие денег 
-        {
-            if (HasEnoughMoney(amount))
-            {
-                Balance -= amount;
-                return true;
-            }
-            return false;
-        }
-
-        public void Deposit(float amount) //пополнение карты
-        {
-            Balance += amount;
         }
 
 
@@ -104,6 +66,8 @@ namespace BankingApp.Classes
             DateTime expiryDate = new DateTime(year, month, 1).AddMonths(1).AddDays(-1); //последний день карты
             return expiryDate < DateTime.Now; //сравниваем с сегодня
         }
+
+
 
     }
 }
