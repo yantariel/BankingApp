@@ -61,12 +61,29 @@ namespace BankingApp.Classes
         private string LuhnAlgorithm(string cardNumberWithoutLuhnAlgorithm)  //проверяет точность идентификационных номеров
         {
             int sum = 0;
+            int length = cardNumberWithoutLuhnAlgorithm.Length;
+            bool shouldDouble = false;  //в алгоритме нужно удваивать каждую вторую цифру идя справа налево
+            //если идти справа налево получим, что первая цифра (под индексом 14 при нумерации слева направо) 
+            //не должна умножаться на 2, тк она на нечетном месте
+            //(по алгоритму умножается на два каждая цифра на четном месте справа налево)
 
-            for (int i = 0; i < cardNumberWithoutLuhnAlgorithm.Length; i++)
+            for (int i = length - 1; i >= 0 ; i--) //цикл от последнего индекса (14 если нумеровать слева направо с 0)
             {
                 int digit = int.Parse(cardNumberWithoutLuhnAlgorithm[i].ToString());
-                if (i % )
+
+                if (shouldDouble) //если цифра на четном месте, умножаем на 2 согласно алгоритму (то есть на нечетном индексе)
+                {
+                    digit *= 2;
+                    if (digit > 9)
+                    {
+                        digit = digit - 9;
+                    }
+                }
+
+                sum += digit; 
+                shouldDouble = !shouldDouble;  //переключаем флаг, так как теперь цифра - на четном месте справа налево
             }
+        }
         }
 
     }
