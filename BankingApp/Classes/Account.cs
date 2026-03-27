@@ -23,7 +23,7 @@ namespace BankingApp.Classes
 
     public abstract class Account : IAccount
     {
-        public ObservableCollection<Card> Cards { get; private set; }
+      
 
         //public string CardBalanceView => $"{AccountBalance.ToString("N2")} ₽";
         public float AccountBalance { get; set; }
