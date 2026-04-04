@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankingApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,8 @@ using System.Threading.Tasks;
 
 namespace BankingApp.Classes
 {
-    public class CardNumberGenerator
+    public class CardNumberGenerator  //в Bank
     {
-        public enum PaymentSystem
-        {
-            Visa,
-            MasterCard,
-            Mir
-        }
 
         public string GenerateCardNumber(PaymentSystem paymentSystem)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankingApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace BankingApp.Classes
             PaymentSystem = paymentSystem;
             CardBalance = balance;
             ReleaseDate = DateTime.Now;  //время компьютера
-            CVV = GenerateRandomCVV();             
+            CVV = GenerateRandomCVV();    
         }
 
         public string GetMaskedCardNumber() //чтобы показывались только последние 4 циферки

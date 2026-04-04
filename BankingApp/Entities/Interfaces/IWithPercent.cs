@@ -10,8 +10,8 @@ namespace BankingApp.Interfaces
     {
         void Сapitalization(); //начисление насчитанных (в банке) ежедневных процентов на баланс в конце месяца
 
-        bool IsItTimeToApplyInterest();
-        bool IsBalanceOnCreditCardNegative();
+        bool IsItTimeToApplyInterest();  
+        bool IsBalanceOnCreditCardNegative();  //если баланс негативный, то на кредитку начислятся проценты
         bool IsBalanceOnCreditCardPositive();
     }
 }
