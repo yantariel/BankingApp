@@ -10,28 +10,17 @@ using System.Threading.Tasks;
 
 namespace BankingApp.Entities.Classes
 {
-    abstract class WithCards: IWithCards
+    //этот просто кладет созданные карты в коллекцию (создаваться они будут в классе Bank)
+    public class WithCards: IWithCards
     {
-        public string CardNumber { get; private set; }     //номер карты
-        public string ExpiryDate { get; private set; }     //срок действия (MM/YY)
-        public PaymentSystem PaymentSystem { get; private set; }  //платежная система (VISA, Mastercard) (enum)
-        public float CardBalance { get; set; }     //баланс
-        public DateTime ReleaseDate { get; private set; }  //дата выпуска
-        public string CVV { get; private set; }            //cvv код
-        public Account Account { get; set; }
-
+        public Account Account { get; set; }  
         public ObservableCollection<Card> Cards { get; private set; }
 
-        public WithCards(string cardNumber, string expiryDate, PaymentSystem paymentSystem, float balance)
+        public WithCards(Account account)
         {
-            CardNumber = cardNumber;
-            ExpiryDate = expiryDate;
-            PaymentSystem = paymentSystem;
-            CardBalance = balance;
-            ReleaseDate = DateTime.Now;  //время компьютера
-            //CVV = GenerateRandomCVV();  /после вынесения в Bank раскомментить
+            Account = account;
+            Cards = new ObservableCollection<Card>();
         }
-
 
         public OperationResult AddCard(Card card) //привязывает карту к счету
         {
@@ -44,12 +33,15 @@ namespace BankingApp.Entities.Classes
                 return result;
             }
 
-            if (card.Account != null && card.Account != this) //если карта привязана к другому счету, отвязываем ее
-            {
-                card.Account.Cards.Remove(card);
-            }
 
-            card.Account = this;  //this это тот конкретный объект, для которого вызван метод
+            //это в Bank
+            //if (card.Account != null && card.Account != this) //если карта привязана к другому счету, отвязываем ее
+            //{
+            //    card.Account.Cards.Remove(card);
+            //}
+
+            //card.Account = this;  //this это тот конкретный объект, для которого вызван метод
+
 
             if (!Cards.Contains(card)) //если карта уже не в списке
             {
@@ -71,18 +63,26 @@ namespace BankingApp.Entities.Classes
                 return result;
             }
 
-            if (card.Account != this)
-            {
-                result.Success = false;
-                result.Message = "Эта карта не привязана к этому счету";
-                return result;
-            }
+
+            //это в Bank
+            //if (card.Account != this)
+            //{
+            //    result.Success = false;
+            //    result.Message = "Эта карта не привязана к этому счету";
+            //    return result;
+            //}
+
 
             card.Account = null;
             Cards.Remove(card);
             result.Success = true;
-            result.Message = "Карта успешно откреплена от счету";
+            result.Message = "Карта успешно откреплена от счета";
             return result;
+        }
+
+        public ObservableCollection<Card> GetCards()
+        {
+            return Cards;
         }
 
         //В BANK

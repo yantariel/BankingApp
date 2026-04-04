@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BankingApp.Interfaces
 {
-    internal interface IAccount
+    public interface IAccount
     {
         float AccountBalance { get; set; }
         string AccountOwnerName { get; }    

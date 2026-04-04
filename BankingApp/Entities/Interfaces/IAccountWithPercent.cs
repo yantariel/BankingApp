@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankingApp.Interfaces
 {
-    internal interface IAccountWithPercent: IAccount, IWithPercent
+    public interface IAccountWithPercent: IAccount, IWithPercent
     {
 
     }

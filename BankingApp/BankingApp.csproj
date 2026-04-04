@@ -94,6 +94,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Entities\Classes\Account.cs" />
+    <Compile Include="Entities\Classes\CheckingAccount.cs" />
+    <Compile Include="Entities\Classes\SavingAccount.cs" />
     <Compile Include="Entities\Classes\WithCards.cs" />
     <Compile Include="Entities\Classes\Account_CheckingAccount.cs" />
     <Compile Include="Entities\Classes\Account_CreditAccount.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Entities\Classes\Card.cs" />
     <Compile Include="Entities\Classes\CardNumberGenerator.cs" />
     <Compile Include="Entities\Classes\Human.cs" />
+    <Compile Include="Entities\Classes\WithPercent.cs" />
     <Compile Include="Entities\Interfaces\IAccountWithCards.cs" />
     <Compile Include="Entities\Interfaces\IAccountWithCardsAndPercent.cs" />
     <Compile Include="Entities\Interfaces\IAccountWithPercent.cs" />

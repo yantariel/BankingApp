@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankingApp.Interfaces
 {
-    internal interface IAccountWithCards: IAccount, IWithCards
+    public interface IAccountWithCards: IAccount, IWithCards
     {
 
     }

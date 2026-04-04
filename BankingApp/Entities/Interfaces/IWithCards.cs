@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace BankingApp.Interfaces
 {
-    internal interface IWithCards
+    public interface IWithCards
     {
-        ObservableCollection<Card> Cards { get; }
+        //ObservableCollection<Card> Cards { get; }  это наверное отдельно в Debit и Credit?
 
         ObservableCollection<Card> GetCards();
         OperationResult AddCard(Card card);

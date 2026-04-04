@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankingApp.Interfaces
 {
-    internal interface IAccountWithCardsAndPercent: IWithCards, IWithPercent  //это интерфейс по сути для CreditAccount
+    public interface IAccountWithCardsAndPercent: IWithCards, IWithPercent  //это интерфейс по сути для CreditAccount
     {
 
     }

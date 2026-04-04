@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace BankingApp.Classes
 {
-
     public abstract class Account : IAccount
     {
         public float AccountBalance { get; set; }
@@ -19,7 +18,6 @@ namespace BankingApp.Classes
         public DateTime OpenDate { get; private set; }
 
         
-
         public Account(float accountBalance, string accountOwnerName, string accountNumber, AccountType accountType)
         {
             AccountBalance = accountBalance;
