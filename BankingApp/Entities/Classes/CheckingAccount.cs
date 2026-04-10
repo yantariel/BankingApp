@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace BankingApp.Entities.Classes
 {
-    public class CheckingAccount: Account, IAccountWithCards
+    //обычный дебетовый счет
+    public class CheckingAccount: Account, IAccountWithCards 
     {
         public WithCards WithCards {  get; private set; }
         public CheckingAccount(float balance, string ownerName, string accountNumber)

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BankingApp.Entities.Classes
 {
-    //этот просто кладет созданные карты в коллекцию (создаваться они будут в классе Bank)
+    //просто кладет созданные карты в коллекцию (создаваться они будут в классе Bank)
     public class WithCards: IWithCards
     {
         public Account Account { get; set; }  

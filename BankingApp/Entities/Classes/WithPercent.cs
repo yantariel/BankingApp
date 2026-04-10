@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace BankingApp.Entities.Classes
 {
+    //начисляет проценты на баланс, рассчитываться и устанавливаться будут в классе Bank
     public class WithPercent: IWithPercent  //его наверное нужно сделать абстрактным?
     {
         public Account Account { get; set; }
