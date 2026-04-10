@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading; //библиотека с таймером
 
-namespace BankingApp.Classes
+namespace BankingApp.Etities.Classes
 {
     public class Authentification
     {

@@ -1,5 +1,5 @@
-﻿using BankingApp.Classes;
-using BankingApp.Interfaces;
+﻿using BankingApp.Etities.Classes;
+using BankingApp.Etities.Interfaces;
 using BankingApp.Models;
 using System;
 using System.Collections.Generic;

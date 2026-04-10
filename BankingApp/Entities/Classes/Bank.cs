@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankingApp.Classes
+namespace BankingApp.Etities.Classes
 {
     public class Bank
     {

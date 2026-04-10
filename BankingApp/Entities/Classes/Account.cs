@@ -1,4 +1,4 @@
-﻿using BankingApp.Interfaces;
+﻿using BankingApp.Etities.Interfaces;
 using BankingApp.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankingApp.Classes
+namespace BankingApp.Etities.Classes
 {
     public abstract class Account : IAccount
     {

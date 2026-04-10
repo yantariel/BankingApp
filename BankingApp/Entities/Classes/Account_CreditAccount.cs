@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankingApp.Classes
+namespace BankingApp.Etities.Classes
 {
     //internal class Account_CreditAccount : Account
     //{

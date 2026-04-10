@@ -1,4 +1,4 @@
-﻿using BankingApp.Classes;
+﻿using BankingApp.Etities.Classes;
 using System.Windows;
 using System.Windows.Controls;
 

@@ -1,4 +1,4 @@
-﻿using BankingApp.Classes;
+﻿using BankingApp.Etities.Classes;
 using BankingApp.Pages;
 using System;
 using System.Collections.Generic;

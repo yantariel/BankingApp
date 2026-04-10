@@ -1,8 +1,8 @@
-﻿using BankingApp.Classes;
+﻿using BankingApp.Etities.Classes;
 using BankingApp.Models;
 using System;
 
-namespace BankingApp.Classes
+namespace BankingApp.Etities.Classes
 {
     internal static class Static
     {

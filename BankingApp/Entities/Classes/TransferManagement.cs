@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 //перевод по номеру телефона или карты
 
-namespace BankingApp.Classes
+namespace BankingApp.Etities.Classes
 {
     public enum TransferType
     {

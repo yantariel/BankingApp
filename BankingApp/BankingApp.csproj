@@ -133,12 +133,10 @@
     <Compile Include="Entities\Classes\Account_SavingAccount.cs" />
     <Compile Include="Entities\Classes\Authentification.cs" />
     <Compile Include="Entities\Classes\Bank.cs" />
-    <Compile Include="Entities\Classes\BeforeAccount.cs" />
     <Compile Include="Entities\Classes\Card.cs" />
     <Compile Include="Entities\Classes\CardNumberGenerator.cs" />
     <Compile Include="Entities\Classes\CheckingAccount.cs" />
     <Compile Include="Entities\Classes\Human.cs" />
-    <Compile Include="Entities\Classes\IAccount.cs" />
     <Compile Include="Entities\Classes\SavingAccount.cs" />
     <Compile Include="Entities\Classes\Static.cs" />
     <Compile Include="Entities\Classes\Transaction.cs" />

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static BankingApp.Classes.CardNumberGenerator;
+using static BankingApp.Etities.Classes.CardNumberGenerator;
 
-namespace BankingApp.Classes
+namespace BankingApp.Etities.Classes
 {
     public class Card
     {
