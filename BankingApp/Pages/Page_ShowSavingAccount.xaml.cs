@@ -23,12 +23,12 @@ namespace BankingApp.Pages
     public partial class Page_ShowSavingAccount : Page
     {
         private MainWindow _parentWindow;
-        private Account _account;
-        public Page_ShowSavingAccount(MainWindow parentWindow)
+        private AccountManagement _account;
+        public Page_ShowSavingAccount(MainWindow parentWindow, AccountManagement account)
         {
             InitializeComponent();
             _parentWindow = parentWindow;
-            _account = Static.CurrentAccount;
+            _account = account;
 
             UpdateData();
         }

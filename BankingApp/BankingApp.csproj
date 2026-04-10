@@ -85,83 +85,56 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Entities\Classes\Account.cs" />
-    <Compile Include="Entities\Classes\CheckingAccount.cs" />
-    <Compile Include="Entities\Classes\SavingAccount.cs" />
-    <Compile Include="Entities\Classes\WithCards.cs" />
-    <Compile Include="Entities\Classes\Account_CheckingAccount.cs" />
-    <Compile Include="Entities\Classes\Account_CreditAccount.cs" />
-    <Compile Include="Entities\Classes\Account_SavingAccount.cs" />
-    <Compile Include="Entities\Classes\Authentification.cs" />
-    <Compile Include="Entities\Classes\Bank.cs" />
-    <Compile Include="Entities\Classes\Card.cs" />
-    <Compile Include="Entities\Classes\CardNumberGenerator.cs" />
-    <Compile Include="Entities\Classes\Human.cs" />
-    <Compile Include="Entities\Classes\WithPercent.cs" />
-    <Compile Include="Entities\Interfaces\IAccountWithCards.cs" />
-    <Compile Include="Entities\Interfaces\IAccountWithCardsAndPercent.cs" />
-    <Compile Include="Entities\Interfaces\IAccountWithPercent.cs" />
-    <Compile Include="Entities\Classes\Static.cs" />
-    <Compile Include="Entities\Classes\Transaction.cs" />
-    <Compile Include="Entities\Classes\TransactionHistory.cs" />
-    <Compile Include="Entities\Classes\TransferManagement.cs" />
-    <Compile Include="Entities\Classes\User.cs" />
-    <Compile Include="Entities\Interfaces\IAccount.cs" />
-    <Compile Include="Entities\Interfaces\IWithCards.cs" />
-    <Compile Include="Entities\Interfaces\IWithPercent.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Pages\Page_Bonus.xaml">
-      <SubType>Designer</SubType>
+    <Compile Include="Classes\AccountManagement.cs" />
+    <Compile Include="Classes\Authentification.cs" />
+    <Compile Include="Classes\Transaction.cs" />
+    <Compile Include="Classes\TransactionHistory.cs" />
+    <Compile Include="Classes\TransferManagement.cs" />
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Page_Bonus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Page_EnterPincode.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Page_ExternalTransfer.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Page_InternalTransfer.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Page_Loan.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Page_Menu.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Page_ShowBalance.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Page_ShowCardBalance.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Page_ShowSavingAccount.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\AccountType.cs" />
-    <Compile Include="Models\OperationResult.cs" />
-    <Compile Include="Models\PaymentSystem.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Page_Bonus.xaml.cs">
       <DependentUpon>Page_Bonus.xaml</DependentUpon>
     </Compile>
@@ -182,9 +155,6 @@
     </Compile>
     <Compile Include="Pages\Page_ShowBalance.xaml.cs">
       <DependentUpon>Page_ShowBalance.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Page_ShowCardBalance.xaml.cs">
-      <DependentUpon>Page_ShowCardBalance.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Page_ShowSavingAccount.xaml.cs">
       <DependentUpon>Page_ShowSavingAccount.xaml</DependentUpon>
@@ -215,9 +185,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets" Condition="Exists('..\packages\System.ValueTuple.4.6.1\build\net471\System.ValueTuple.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

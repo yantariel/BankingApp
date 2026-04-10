@@ -23,9 +23,9 @@ namespace BankingApp.Pages
     public partial class Page_InternalTransfer : Page
     {
         private MainWindow _parentWindow;
-        private Account _account;
+        private AccountManagement _account;
 
-        public Page_InternalTransfer(MainWindow parentWindow, Account account)
+        public Page_InternalTransfer(MainWindow parentWindow, AccountManagement account)
         {
             InitializeComponent();
             _parentWindow = parentWindow;
@@ -36,7 +36,7 @@ namespace BankingApp.Pages
 
         private void UpdateBalanceDisplay()
         {
-            Text_CardBalance.Text = _account.AccountBalance.ToString("N2") + " ₽";
+            Text_CardBalance.Text = _account.CardBalance.ToString("N2") + " ₽";
         }
 
         private void ButtonClick_CommitInternalTransfer(object sender, RoutedEventArgs e)
@@ -84,13 +84,15 @@ namespace BankingApp.Pages
 
             if (fromAccount.Contains("Карта") && toAccount.Contains("Накопительный"))
             {
-                if (_account.AccountBalance >= amount)
+                if (_account.CardBalance >= amount)
                 {
-                    float newCardBalance = _account.AccountBalance - amount;
+                    float newCardBalance = _account.CardBalance - amount;
                     float newSavingBalance = _account.SavingBalance + amount;
 
-                    _account.UpdateCardBalance(newCardBalance);
-                    _account.UpdateSavingBalance(newSavingBalance);
+                    _account.CardBalance = newCardBalance;
+                    _account.SavingBalance = newSavingBalance;
+
+                    _parentWindow.UpdateBalanceInAllPages(newCardBalance, newSavingBalance);
 
                     success = true;
                     message = "Переведено " + amount.ToString("N2") + " ₽ на накопительный счет";
@@ -122,7 +124,7 @@ namespace BankingApp.Pages
 
                 UpdateBalanceDisplay();
 
-                Page_Menu menuPage = new Page_Menu(_parentWindow);
+                Page_Menu menuPage = new Page_Menu(_parentWindow, _account);
                 _parentWindow.Refresh(menuPage);
 
                 Text_TransferAmount.Text = "";

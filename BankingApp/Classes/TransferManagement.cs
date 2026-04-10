@@ -7,29 +7,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-//перевод по номеру телефона или карты
-
 namespace BankingApp.Classes
 {
-    public enum TransferType
-    {
-        Phone,
-        Card
-    }
-    public class TransferResult
-    {
-        public bool Success { get; set; }
-        public string Message { get; set; }
-        public float NewBalance { get; set; }
-        public Transaction Transaction { get; set; }
-    }
-
     public class TransferManagement
     {
-        private Account _accountManagement;
+        private AccountManagement _accountManagement;
         private TransactionHistory _transactionHistory;
 
-        public TransferManagement(Account accountManagement, TransactionHistory transactionHistory) //конструктор
+        public TransferManagement(AccountManagement accountManagement, TransactionHistory transactionHistory) //конструктор
         {
             _accountManagement = accountManagement;
             _transactionHistory = transactionHistory;
@@ -51,7 +36,14 @@ namespace BankingApp.Classes
 
                 if (long.TryParse(numberWithoutPlus, out long phoneNumber)) 
                 {
-                    return numberWithoutPlus.Length == 11;
+                    if (numberWithoutPlus.Length == 11)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
@@ -144,18 +136,32 @@ namespace BankingApp.Classes
                 transactionType = "Перевод по карте";
             }
 
-            Transaction transaction = new Transaction(transactionType, amount, recipient, _accountManagement.AccountBalance);
+            Transaction transaction = new Transaction(transactionType, amount, recipient, _accountManagement.CardBalance);
 
             _transactionHistory.AddTransaction(transaction);
 
             result.Success = true;
             result.Message = $"Успешно переведено {amount} ₽";
-            result.NewBalance = _accountManagement.AccountBalance;
+            result.NewBalance = _accountManagement.CardBalance;
             result.Transaction = transaction;
 
             return result;
         }
-    }  
+    }   
+
+    public enum TransferType
+    {
+        Phone,
+        Card
+    }
+
+    public class TransferResult
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; }
+        public float NewBalance { get; set; }
+        public Transaction Transaction { get; set; }
+    }
 
 
 }

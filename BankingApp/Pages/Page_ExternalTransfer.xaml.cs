@@ -22,14 +22,14 @@ namespace BankingApp.Pages
     public partial class Page_ExternalTransfer : Page
     {
         private MainWindow _parentWindow;
-        private Account _accountManagement;
+        private AccountManagement _accountManagement;
         private TransferManagement _transferManagement;
 
-        public Page_ExternalTransfer(MainWindow parentWindow, TransferManagement transferManagement)
+        public Page_ExternalTransfer(MainWindow parentWindow, AccountManagement accountManagement, TransferManagement transferManagement)
         {
             InitializeComponent();
             _parentWindow = parentWindow;
-            _accountManagement = Static.CurrentAccount;
+            _accountManagement = accountManagement;
             _transferManagement = transferManagement;
 
             // Подписываемся на событие Checked радио-кнопок
@@ -44,7 +44,7 @@ namespace BankingApp.Pages
 
         private void UpdateBalanceDisplay()
         {
-            Text_Balance.Text = _accountManagement.AccountBalance.ToString("N2") + " ₽";
+            Text_Balance.Text = _accountManagement.CardBalance.ToString("N2") + " ₽";
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
@@ -94,7 +94,7 @@ namespace BankingApp.Pages
 
                 UpdateBalanceDisplay();
 
-                Page_Menu menuPage = new Page_Menu(_parentWindow);
+                Page_Menu menuPage = new Page_Menu(_parentWindow, _accountManagement);
                 _parentWindow.Refresh(menuPage);
 
                 Text_TransferAmmount.Text = "";

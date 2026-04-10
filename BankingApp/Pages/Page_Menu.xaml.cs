@@ -22,41 +22,45 @@ namespace BankingApp.Pages
     /// </summary>
     public partial class Page_Menu : Page
     {
+        private string _menu;
         private MainWindow _parentWindow;
-        private Account _account;
+        private AccountManagement _account;
 
-        public Page_Menu(MainWindow parentWindow)
+        public Page_Menu(MainWindow parentWindow, AccountManagement account)
         {
             InitializeComponent();
             _parentWindow = parentWindow;
-            _account = Static.CurrentAccount;
+            _account = account;
 
             UpdateBalanceDisplay();
         }
 
         public void UpdateBalanceDisplay()
         {
-            MenuCardBalance.Text = _account.CardBalanceView;
-            MenuSavingBalance.Text = _account.SavingBalanceView;
+            if (MenuCardBalance != null)
+                MenuCardBalance.Text = _account.CardBalance.ToString("N2") + " ₽";
+
+            if (MenuSavingsBalance != null)
+                MenuSavingsBalance.Text = _account.SavingBalance.ToString("N2") + " ₽";
         }
 
         private void ButtonClick_ShowBalance(object sender, RoutedEventArgs e)
         {
-            //_parentWindow.Refresh(new Page_ShowBalance(_parentWindow));
-            _parentWindow.Refresh(new Page_ShowCardBalance(_parentWindow));
+            _parentWindow.Refresh(new Page_ShowBalance(_parentWindow, _account));
         }
 
         private void ButtonClick_ShowSavingAccount(object sender, RoutedEventArgs e)
         {
-            _parentWindow.Refresh(new Page_ShowSavingAccount(_parentWindow));
+            _parentWindow.Refresh(new Page_ShowSavingAccount(_parentWindow, _account));
         }
 
         private void ButtonClick_ExternalTransfer(object sender, RoutedEventArgs e)
         {
+            AccountManagement account = _parentWindow.GetAccount();
             TransactionHistory history = _parentWindow.GetTransactionHistory(); 
             TransferManagement transfer = _parentWindow.GetTransferManagement();
 
-            _parentWindow.Refresh(new Page_ExternalTransfer(_parentWindow, transfer));
+            _parentWindow.Refresh(new Page_ExternalTransfer(_parentWindow, account, transfer));
         }
 
         private void ButtonClick_InternalTransfer(object sender, RoutedEventArgs e)

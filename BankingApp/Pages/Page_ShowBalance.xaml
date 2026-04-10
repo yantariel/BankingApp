@@ -49,7 +49,7 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Text="CardHolderName" FontSize="12"/>
+                        <TextBlock Grid.Column="0" Text="YANA GUDKOVA" FontSize="12"/>
 
                         <TextBlock Grid.Column="1" Text="VISA" FontSize="16" FontWeight="Bold"/>
                     </Grid>
