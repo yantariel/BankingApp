@@ -22,18 +22,18 @@ namespace BankingApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private AccountManagement _account;
         private TransactionHistory _transactionHistory;
         private TransferManagement _transferManagement;
 
         public MainWindow()
-        {   
+        {
             InitializeComponent();
-            //DataContext = this;
+            DataContext = this;
 
-            _account = new AccountManagement();
+            Static.Initialize();
+
             _transactionHistory = new TransactionHistory();
-            _transferManagement = new TransferManagement(_account, _transactionHistory);
+            _transferManagement = new TransferManagement(Static.CurrentAccount, _transactionHistory);
 
             Proxy.Content = new Page_EnterPincode(this);
 
@@ -47,10 +47,6 @@ namespace BankingApp
             }
         }
 
-        public AccountManagement GetAccount()
-        {
-            return _account;
-        }
         public TransactionHistory GetTransactionHistory()
         {
             return _transactionHistory;
@@ -59,13 +55,6 @@ namespace BankingApp
         {
             return _transferManagement;
         }
-
-        public void UpdateBalanceInAllPages(float newBalance, float newSavingBalance)
-        {
-            _account.CardBalance = newBalance;
-            _account.SavingBalance = newSavingBalance;
-        }
-
 
     }
 }
